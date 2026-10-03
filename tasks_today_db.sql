@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2026 at 11:50 AM
+-- Generation Time: Oct 03, 2026 at 03:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `tasks` (
   `title` varchar(150) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'pending',
   `task_date` date NOT NULL,
+  `is_archived` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,15 +40,17 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `created_at`) VALUES
-(1, 'Review lesson', 'pending', '2026-09-29', '2026-09-29 16:54:30'),
-(2, 'Finish activity', 'pending', '2026-09-29', '2026-09-29 16:54:30'),
-(3, 'Review CCST', 'completed', '2026-09-29', '2026-09-29 16:54:30'),
-(4, 'Practice Dancing', 'pending', '2026-09-28', '2026-09-29 16:54:30'),
-(5, 'Singing Audition', 'completed', '2026-09-28', '2026-09-29 16:54:30'),
-(6, 'Practice Scrimmage', 'pending', '2026-09-30', '2026-09-29 16:54:30'),
-(7, 'Update project files', 'pending', '2026-09-30', '2026-09-29 16:54:30'),
-(8, 'Prepare presentation', 'pending', '2026-10-01', '2026-09-29 16:54:30');
+INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `is_archived`, `created_at`) VALUES
+(1, 'Review lesson', 'pending', '2026-09-29', 0, '2026-09-29 16:54:30'),
+(2, 'Finish activity', 'pending', '2026-09-29', 0, '2026-09-29 16:54:30'),
+(3, 'Review CCST', 'pending', '2026-10-03', 0, '2026-09-29 16:54:30'),
+(4, 'Practice Dancing', 'completed', '2026-09-03', 1, '2026-09-29 16:54:30'),
+(5, 'Singing Audition', 'completed', '2026-09-28', 1, '2026-09-29 16:54:30'),
+(6, 'Practice Scrimmage', 'pending', '2026-09-30', 0, '2026-09-29 16:54:30'),
+(7, 'Update project files', 'pending', '2026-09-30', 0, '2026-09-29 16:54:30'),
+(8, 'Prepare presentation', 'pending', '2026-10-01', 0, '2026-09-29 16:54:30'),
+(9, 'PHP Deadline', 'pending', '2026-10-03', 0, '2026-10-03 13:00:39'),
+(10, 'Php Code', 'pending', '2026-10-03', 0, '2026-10-03 13:19:24');
 
 -- --------------------------------------------------------
 
@@ -60,6 +63,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,8 +71,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `created_at`) VALUES
-(1, 'wasedino', 'WILDUARD RAPHAEL SEDIÑO', 'wasedino@example.com', '2026-09-29 16:54:30');
+INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `password`, `created_at`) VALUES
+(1, 'wasedino', 'WILDUARD RAPHAEL SEDIÑO', 'wasedino@example.com', '$2y$10$2z6m/aocym6xlWcRFfucPOB8ysrmENJ/lclSLExAZr8ogUAN2sP3e', '2026-09-29 16:54:30');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +99,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
